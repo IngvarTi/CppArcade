@@ -42,6 +42,7 @@ void UShootComponent::Shoot()
 	}
 }
 
+
 void UShootComponent::StartShooting()
 {
 	GetWorld()->GetTimerManager().SetTimer(ShootingTimer, this, &UShootComponent::Shoot, ShootPeriod, true, ShootPeriod);
