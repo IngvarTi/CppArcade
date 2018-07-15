@@ -76,4 +76,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Shooting")
 	TArray<FShootTankInfo> ShootInfos;
 	
+	/** Sound to play each time we fire */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	class USoundBase* FireSound;
 };

@@ -80,6 +80,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Controls")
 	float TouchMoveSensivity;
 
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+	void SetTouchMoveSensivity(float Sensitivity);
+
 	UPROPERTY(BlueprintAssignable, Category = "Healths")
 	FPawnDamagedEvent PawnDamaged;
 
@@ -89,4 +92,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Visual")
 	UParticleSystem* DestroyParticle;
 
+	/** Sound to play each time we fire */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	class USoundBase* DamageSound;
 };

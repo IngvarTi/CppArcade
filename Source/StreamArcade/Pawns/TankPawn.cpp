@@ -49,6 +49,11 @@ void ATankPawn::DestroyPawn()
 	if (DestroyParticle)
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DestroyParticle, GetActorTransform(), true);
 
+	if (DestroySound != nullptr && GetWorld()->GetFirstPlayerController()->GetPawn())
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, DestroySound, GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
+	}
+
 	Destroy();
 }
 

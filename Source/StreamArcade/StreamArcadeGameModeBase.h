@@ -79,6 +79,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Game")
 	bool ChangeShootLevel(bool Up);
 
+	UFUNCTION(BlueprintCallable, Category = "Game")
+	void ChangeHealth(int Health);
+
 	UPROPERTY(BlueprintReadWrite, Category = "Game")
 	float PlayerRecoverTime;
 

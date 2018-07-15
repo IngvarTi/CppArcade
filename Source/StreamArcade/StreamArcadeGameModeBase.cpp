@@ -65,7 +65,7 @@ void AStreamArcadeGameModeBase::EndGame()
 
 	UE_LOG(LogTemp, Log, TEXT("GAME OVER!!!"));
 
-	SetPause(UGameplayStatics::GetPlayerController(this, 0), false);
+	SetPause(UGameplayStatics::GetPlayerController(this, 0)/*, false*/);
 }
 
 void AStreamArcadeGameModeBase::IncreaseDifficulty()
@@ -96,6 +96,12 @@ bool AStreamArcadeGameModeBase::ChangeShootLevel(bool Up)
 	return true;
 }
 
+
+void AStreamArcadeGameModeBase::ChangeHealth(int Health)
+{
+	HealthsComponent->ChangeHealths(Health);
+	UE_LOG(LogTemp, Log, TEXT("2 Health must be change on: %i"), Health);
+}
 
 void AStreamArcadeGameModeBase::PopulateBoundsVolumePool() // Add from TestingGrounds
 {

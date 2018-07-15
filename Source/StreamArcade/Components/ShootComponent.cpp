@@ -3,6 +3,7 @@
 #include "ShootComponent.h"
 #include "Engine/World.h"
 #include "TimerManager.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UShootComponent::UShootComponent()
@@ -23,6 +24,11 @@ void UShootComponent::BeginPlay()
 
 void UShootComponent::Shoot()
 {
+	if (FireSound != nullptr)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetOwner()->GetActorLocation());
+	}
+
 	for (FShootInfo ShootInfo : ShootInfos)
 	{
 		FActorSpawnParameters SpawnParameters;

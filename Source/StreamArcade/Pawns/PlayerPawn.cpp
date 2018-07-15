@@ -13,7 +13,7 @@
 // Sets default values
 APlayerPawn::APlayerPawn()
 	:
-	TouchMoveSensivity(1.f),
+	TouchMoveSensivity(2.5f),
 	MoveLimit(FVector2D(500.f, 600.f))
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -72,6 +72,11 @@ void APlayerPawn::RecoverPawn_Implementation()
 	}
 }
 
+void APlayerPawn::SetTouchMoveSensivity(float Sensitivity)
+{
+	TouchMoveSensivity = Sensitivity;
+}
+
 // Called when the game starts or when spawned
 void APlayerPawn::BeginPlay()
 {
@@ -84,6 +89,11 @@ void APlayerPawn::BeginPlay()
 float APlayerPawn::TakeDamage(float Damage, const FDamageEvent& DamageEvent, AController * InstigatedBy, AActor * DamageCauser)
 {
 	if (!CanBeDamaged()) return 0.f;
+
+	if (DamageSound != nullptr && GetWorld()->GetFirstPlayerController()->GetPawn())
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, DamageSound, GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
+	}
 
 	Super::TakeDamage(Damage, DamageEvent, InstigatedBy, DamageCauser);
 	PawnDamaged.Broadcast();
