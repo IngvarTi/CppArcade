@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ShootTankComponent.h"
+#include "TankBarrel.h" //Add to set shoot point
 #include "Engine/World.h"
 #include "TimerManager.h"
 #include "Kismet/GameplayStatics.h"
@@ -13,6 +14,10 @@ UShootTankComponent::UShootTankComponent()
 	// ...
 }
 
+void UShootTankComponent::InitialiseBarrel(UTankBarrel * BarrelToSet) //Add to set shoot point
+{
+	Barrel = BarrelToSet;
+}
 
 // Called when the game starts
 void UShootTankComponent::BeginPlay()
@@ -42,9 +47,15 @@ void UShootTankComponent::Shoot()
 	//FRotator SpawnRotation = GetOwner()->GetActorRotation();
 	//SpawnRotation.Add(0.f, Angle, 0.f);
 
-	AShootProjectile* Projectile = GetWorld()->SpawnActor<AShootProjectile>(ProjectileClass, Offset, Angle, SpawnParameters);
-	if (Projectile) Projectile->Damage = Damage;
-	
+	if (Barrel != nullptr)
+	{
+		AShootProjectile* Projectile = GetWorld()->SpawnActor<AShootProjectile>(ProjectileClass, Barrel->GetSocketLocation(FName("Projectile")) + FVector(450.f,0.f, 0.f),
+		Barrel->GetSocketRotation(FName("Projectile")), SpawnParameters);
+
+		if (Projectile) Projectile->Damage = Damage;
+
+		UE_LOG(LogTemp, Warning, TEXT("Shot tank: %s"), *(GetOwner()->GetName()));
+	}
 }
 
 
@@ -67,4 +78,5 @@ void UShootTankComponent::StopShooting()
 {
 	GetWorld()->GetTimerManager().ClearTimer(ShootingTimer);
 }
+
 

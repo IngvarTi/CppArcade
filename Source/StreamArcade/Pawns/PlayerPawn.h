@@ -34,6 +34,7 @@ protected:
 
 	APlayerController* PlayerController;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector2D MoveLimit;
 
 private:

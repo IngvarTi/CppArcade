@@ -27,6 +27,8 @@ public:
 
 };
 
+class UTankBarrel; //Add to set shoot point
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class STREAMARCADE_API UShootTankComponent : public UActorComponent
 {
@@ -35,6 +37,9 @@ class STREAMARCADE_API UShootTankComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UShootTankComponent();
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void InitialiseBarrel(UTankBarrel* BarrelToSet); //Add to set shoot point
 
 protected:
 	// Called when the game starts
@@ -79,4 +84,8 @@ public:
 	/** Sound to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	class USoundBase* FireSound;
+
+private:
+
+	UTankBarrel* Barrel = nullptr; //Add to set shoot point
 };

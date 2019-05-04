@@ -6,7 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Pawns/PlayerPawn.h"
 
-#include "AI/Navigation/NavMeshBoundsVolume.h" // Add from TestingGrounds
+#include "NavMesh/NavMeshBoundsVolume.h" // Add from TestingGrounds
 #include "EngineUtils.h" // Add from TestingGrounds
 #include "ActorPool.h" // Add from TestingGrounds
 

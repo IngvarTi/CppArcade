@@ -100,7 +100,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Shooting")
 	int CurrentShootLevel;
 
-private:
+protected:
 
 	void AddToPool(class ANavMeshBoundsVolume *VolumeToAdd); // Add from TestingGrounds
 };

@@ -5,7 +5,7 @@
 
 #include "DrawDebugHelpers.h"
 #include "ActorPool.h"
-#include "AI/Navigation/NavigationSystem.h" // I'm add this because drop error, bud o
+#include "Runtime/NavigationSystem/Public/NavigationSystem.h" // I'm add this because drop error, bud o
 
 // Sets default values
 ATile::ATile()
@@ -37,7 +37,7 @@ void ATile::PositionNavMeshBoundsVolume()
 	}
 	UE_LOG(LogTemp, Warning, TEXT("[%s] Checked out: {%s}"), *GetName(), *NavMeshBoundsVolume->GetName());
 	NavMeshBoundsVolume->SetActorLocation(GetActorLocation() + NavigationBoundsOffset);
-	GetWorld()->GetNavigationSystem()->Build();
+	FNavigationSystem::Build(*GetWorld());
 }
 
 
